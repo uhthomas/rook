@@ -639,6 +639,11 @@ spec:
             runAsNonRoot: true
             runAsUser: 2016
             runAsGroup: 2016
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           volumeMounts:
             - mountPath: /var/lib/rook
               name: rook-config
@@ -753,4 +758,7 @@ spec:
           emptyDir: {}
         - name: webhook-cert
           emptyDir: {}
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
 # OLM: END OPERATOR DEPLOYMENT
